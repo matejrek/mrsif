@@ -23,12 +23,17 @@ Route::get('/app', 'HomeController@index')->name('app');
 Route::get('/routines', 'RoutineController@index');
 Route::post('/routines/store', 'RoutineController@store');
 Route::get('/routines/{id}', 'RoutineController@show');
+Route::get('/routines/{id}/edit', 'RoutineController@edit');
+Route::put('/routines/{id}/edit/save', 'RoutineController@update');
+
+
+Route::get('/routines/delete/{id}', 'RoutineController@destroy');
 
 Route::get('/data', function(){
     return view('routines/create');
 });
 
-/*Route::get('/feedback', function(){
+Route::get('/feedback', function(){
     return view('feedback');
 });
-Route::post('/feedback/submit', 'FeedbackController@store');*/
+Route::post('/feedback/submit', 'FeedbackController@store');

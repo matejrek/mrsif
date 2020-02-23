@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Routine;
 use Illuminate\Http\Request;
 
+use App\Section;
+use App\Exercise;
+
 class RoutineController extends Controller
 {
     /**
@@ -39,7 +42,7 @@ class RoutineController extends Controller
     {
         $requestArr = $request->all();
         $routine = new Routine();
-        $routine->user_id = 1;
+        $routine->user_id = auth()->user()->id;
         $routine->name = $requestArr['name'];
         $routine->description = $requestArr['description'];
         $routine->save();
@@ -78,7 +81,7 @@ class RoutineController extends Controller
      * @param  \App\Routine  $routine
      * @return \Illuminate\Http\Response
      */
-    public function show(Routine $routine)
+    public function show($id)
     {
         $routine = Routine::findOrFail($id);
 
@@ -91,9 +94,10 @@ class RoutineController extends Controller
      * @param  \App\Routine  $routine
      * @return \Illuminate\Http\Response
      */
-    public function edit(Routine $routine)
+    public function edit($id)
     {
-        //
+        $routine = Routine::findOrFail($id);
+        return view('routines/edit', compact('routine'));
     }
 
     /**
@@ -103,9 +107,51 @@ class RoutineController extends Controller
      * @param  \App\Routine  $routine
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Routine $routine)
+    //public function update(Request $request, Routine $routine)
+    public function update(Request $request, $id)
     {
-        //
+        /*$routine = Routine::findOrFail($id);
+        $routine->updateOrCreate($request->all());*/
+        //return $routine;
+        
+        //return $request->all();
+
+        $user = auth()->user();
+        $user->routines()->whereId($id)->delete();
+
+
+        $requestArr = $request->all();
+        $routine = new Routine();
+        $routine->user_id = auth()->user()->id;
+        $routine->name = $requestArr['name'];
+        $routine->description = $requestArr['description'];
+        $routine->save();
+
+        $routine_id = $routine->id;
+
+        foreach($requestArr['sections'] as $item){
+            $section = new Section();
+            $section->name = $item['name'];
+            $section->description = $item['description'];
+            $section->routine_id = $routine_id;
+            $section->save();
+
+            $section_id = $section->id;
+
+            if( array_key_exists( 'exercises', $item ) ){
+                foreach($item['exercises'] as $item2){
+                    $exercise = new Exercise();
+                    $exercise->name = $item2['name'];
+                    $exercise->description = $item['description'];
+                    $exercise->duration = 60;
+                    $exercise->duration_unit = 'seconds';
+
+                    $section->exercises()->save($exercise);
+                }
+            }
+        }
+
+        return redirect('/routines');
     }
 
     /**
@@ -114,8 +160,17 @@ class RoutineController extends Controller
      * @param  \App\Routine  $routine
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Routine $routine)
+    //public function destroy(Routine $routine)
+    public function destroy($id)
     {
-        //
+        $user = auth()->user();
+
+        //$user->routines()->sections()->where('',$id)->sections()->->delete();
+
+        /*$sections = $user->routines()->whereId($id)->sections();*/
+
+        $user->routines()->whereId($id)->delete();
+
+        return redirect('/routines');
     }
 }

@@ -12,6 +12,10 @@
                 <a href="routines/{{$item->id}}/edit">
                     Edit
                 </a>
+                |
+                <a href="routines/delete/{{$item->id}}">
+                    Delete
+                </a>
             </li>
         @endforeach
 

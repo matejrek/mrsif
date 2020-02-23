@@ -20,6 +20,17 @@ class CreateExerciseSectionTable extends Migration
             $table->unsignedBigInteger('section_id');
 
             $table->timestamps();
+
+            $table->foreign('exercise_id')
+                ->references('id')
+                ->on('exercises')
+                ->onDelete('cascade');
+
+            $table->foreign('section_id')
+                ->references('id')
+                ->on('sections')
+                ->onDelete('cascade');
+
         });
     }
 

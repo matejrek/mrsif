@@ -27,11 +27,3 @@ class HomeController extends Controller
     }
 }
 
-/*
-echo "# mrsif" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/matejrek/mrsif.git
-git push -u origin master
-*/

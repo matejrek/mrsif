@@ -7,8 +7,12 @@
             <li>
                 {{ $routine['name'] }}
                 |
-                <a href="/{{$routine['id']}}/edit">
+                <a href="{{$routine['id']}}/edit">
                     Edit
+                </a>
+                |
+                <a href="delete/{{$routine['id']}}">
+                    Delete
                 </a>
                 <ul>
                     @foreach( $routine['sections'] as $item )
