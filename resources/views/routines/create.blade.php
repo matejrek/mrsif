@@ -11,6 +11,18 @@
     <!--form method="POST" action="/data/submit"-->
     <form method="POST" action="/routines/store">
         {{ csrf_field() }}
+
+        @if(count($errors) >0)
+            <div class="alert alert-danger">
+                <ul>
+                @foreach( $errors->all() as $error) 
+                    <li>{{$error}}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+
+
         <input class="form-control" type="text" name="name" placeholder="Enter routine name"><br/>
         <input class="form-control" type="text" name="description" placeholder="Enter a description for this routine"><br/><br/>
 

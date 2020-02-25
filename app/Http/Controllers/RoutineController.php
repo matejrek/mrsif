@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Section;
 use App\Exercise;
+use Illuminate\Support\Str;
+use Validator;
 
 class RoutineController extends Controller
 {
@@ -17,7 +19,7 @@ class RoutineController extends Controller
      */
     public function index()
     {
-        $routines = Routine::all();
+        $routines = Routine::all()->where('user_id', auth()->user()->id);
         //return $routines->toJson(JSON_PRETTY_PRINT);
         return view('routines/index', compact('routines'));
     }
@@ -40,6 +42,13 @@ class RoutineController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name'=>'required|min:3',
+            'description'=>'required|string',
+            'sections.*.name'=>'required|min:3',
+            'sections.*.description'=>'required|string'
+        ]);
+
         $requestArr = $request->all();
         $routine = new Routine();
         $routine->user_id = auth()->user()->id;
