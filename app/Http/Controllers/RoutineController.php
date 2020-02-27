@@ -46,7 +46,17 @@ class RoutineController extends Controller
             'name'=>'required|min:3',
             'description'=>'required|string',
             'sections.*.name'=>'required|min:3',
-            'sections.*.description'=>'required|string'
+            'sections.*.description'=>'required|string',
+            'sections.*.exercises.*.name'=>'required|min:3',
+            'sections.*.exercises.*.description'=>'required|string'
+        ],
+        [
+            'name.required'=>'Routine name can not be empty',
+            'description.required'=>'Routine description can not be empty',
+            'sections.*.name.required'=>'Section name(s) can not be empty',
+            'sections.*.description.required'=>'Section description(s) can not be empty',
+            '*.exercises.*.name.required'=>'Exercise name(s) can not be empty',
+            '*.exercises.*.description.required'=>'Exericse description(s) can not be empty'
         ]);
 
         $requestArr = $request->all();
@@ -124,6 +134,23 @@ class RoutineController extends Controller
         //return $routine;
         
         //return $request->all();
+        $this->validate($request, [
+            'name'=>'required|min:3',
+            'description'=>'required|string',
+            'sections.*.name'=>'required|min:3',
+            'sections.*.description'=>'required|string',
+            'sections.*.exercises.*.name'=>'required|min:3',
+            'sections.*.exercises.*.description'=>'required|string'
+        ],
+        [
+            'name.required'=>'Routine name can not be empty',
+            'description.required'=>'Routine description can not be empty',
+            'sections.*.name.required'=>'Section name(s) can not be empty',
+            'sections.*.description.required'=>'Section description(s) can not be empty',
+            '*.exercises.*.name.required'=>'Exercise name(s) can not be empty',
+            '*.exercises.*.description.required'=>'Exericse description(s) can not be empty'
+        ]);
+
 
         $user = auth()->user();
         $user->routines()->whereId($id)->delete();

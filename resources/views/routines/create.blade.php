@@ -3,13 +3,14 @@
     .exercises{float:left; width:100%; padding:15px; border:1px dotted #ccc;}
 </style>
 
+
 @extends('layouts.app')
 
 
 @section('content')
-
+    <div class="container">
     <!--form method="POST" action="/data/submit"-->
-    <form method="POST" action="/routines/store">
+    <form method="POST" action="/routines/store" class="mrsif-form">
         {{ csrf_field() }}
 
         @if(count($errors) >0)
@@ -42,9 +43,9 @@
         <div class="add-section btn btn-success">Add Section</div>
 
         <br/><br/>
-        <input type="submit" name="submit" class="btn btn-primary">
+        <input type="submit" name="submit" class="btn btn-primary mrsifSubmit">
     </form>
-
+    </div>
     <script>
         //Add exercise
         var exerciseCount = 1;
@@ -83,6 +84,25 @@
         $(document).on('click', '.remove-exercise', function(){
             $(this).parents('.exercise').empty().remove();
         });
+
+        //basic FE validation
+        $('.mrsifSubmit').prop('disabled', true);
+        $(document).change('.form-control', function(){
+            var emptyCount=0;
+            $('.form-control').each(function(){
+                if( $(this).val().length == 0 ){
+                    emptyCount+=1;
+                }
+            });
+            if(emptyCount > 0){
+                $('.mrsifSubmit').prop('disabled', true);
+            }
+            else{
+                $('.mrsifSubmit').prop('disabled', false);
+            }
+            console.log('COUNT: ' + emptyCount);
+        });
+
     </script>
 
 @endsection

@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <h1>MRSIF FitApp</h1>
+                    <h1>MRSIF</h1>
                 </div>
 
                 <!--div class="links">
