@@ -1,18 +1,25 @@
+
 @extends('layouts.app')
 
 
 @section('content')
         <ul>
-        @foreach($results as $item)
+        @foreach($routines as $item)
             <li>
-                {{$item}}
+                <a href="routines/{{$item->id}}">
+                    {{ $item['name'] }}
+                </a>
+                |
+                <a href="routines/{{$item->id}}/edit">
+                    Edit
+                </a>
+                |
+                <a href="routines/delete/{{$item->id}}">
+                    Delete
+                </a>
             </li>
         @endforeach
+
         </ul>
 
-        <a href="/store">Create new tracker</a>
 @endsection
-
-
-
-

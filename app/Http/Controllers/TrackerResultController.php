@@ -33,8 +33,16 @@ class TrackerResultController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        $this->validate($request, [
+            'value'=>'required|min:1'
+        ],
+        [
+            'value.required'=>'A value is required'
+        ]);
+
+
         $data = new TrackerResult();
         $data->value = $request->value;
         $data->tracker_id = $id;
@@ -54,7 +62,7 @@ class TrackerResultController extends Controller
         $tracker = new TrackerResult();
         $tracker->tracker_id = $id;
         $tracker2 = \DB::table('trackers')->where('id', $id)->select('unit_type')->first()->unit_type;
-        $results = TrackerResul::all()->where('tracker_id', $id);
+        $results = TrackerResult::all()->where('tracker_id', $id);
 
         return view('trackers/show', compact('tracker', 'results', 'tracker2'));
     }
