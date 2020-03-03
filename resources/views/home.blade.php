@@ -14,7 +14,17 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/data">Add new routine</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/routines">View routines</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/feedback">Give feeback</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/app', 'HomeController@index')->name('app');
 
-
+//Routines
 Route::get('/routines', 'RoutineController@index');
 Route::post('/routines/store', 'RoutineController@store');
 Route::get('/routines/{id}', 'RoutineController@show');
@@ -33,6 +33,16 @@ Route::get('/data', function(){
     return view('routines/create');
 });
 
+//Trackers
+Route::get('/trackers', 'TrackerController@index');
+Route::get('/trackers/create', 'TrackerController@create');
+Route::post('/trackers/store', 'TrackerController@store');
+
+Route::get('/trackers/{id}/result', 'TrackerResultController@show');
+Route::post('/trackers/{id}/result/store', 'TrackerResultController@store');
+
+
+//Feedback
 Route::get('/feedback', function(){
     return view('feedback');
 });

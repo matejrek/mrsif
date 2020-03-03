@@ -85,6 +85,9 @@
                                 <a class="nav-link" href="/routines">View routines</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="/trackers">Trackers</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="/feedback">Give feeback</a>
                             </li>
                         @endguest

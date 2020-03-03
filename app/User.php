@@ -42,4 +42,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Routine');
     }
 
+    public function trackers(){
+        return $this->hasMany('App\Tracker');
+    }
+
 }
