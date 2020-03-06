@@ -41,6 +41,8 @@ Route::post('/trackers/store', 'TrackerController@store');
 Route::get('/trackers/{id}/result', 'TrackerResultController@show');
 Route::post('/trackers/{id}/result/store', 'TrackerResultController@store');
 
+Route::delete('/trackers/results/{id}/delete', 'TrackerResultController@destroy');
+Route::put('/trackers/result/{id}/retake', 'TrackerResultController@update');
 
 //Feedback
 Route::get('/feedback', function(){

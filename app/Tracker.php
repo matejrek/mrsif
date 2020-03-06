@@ -8,7 +8,7 @@ class Tracker extends Model
 {
     //
     protected $fillable = [
-        'masurment', 'unit_type',
+        'name', 'unit_type',
     ];
 
     public function user(){
@@ -16,6 +16,6 @@ class Tracker extends Model
     }
 
     public function results(){
-        return $this->hasMany(TrackerResult::class);
+        return $this->hasMany('App\TrackerResult');
     }
 }

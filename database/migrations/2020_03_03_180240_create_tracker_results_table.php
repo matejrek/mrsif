@@ -16,7 +16,7 @@ class CreateTrackerResultsTable extends Migration
         Schema::create('tracker_results', function (Blueprint $table) {
             $table->bigIncrements('id');
             
-            $table->integer('value');
+            $table->decimal('value', 6, 1);
             $table->unsignedBigInteger('tracker_id');
 
             $table->timestamps();

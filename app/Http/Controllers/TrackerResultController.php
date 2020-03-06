@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\TrackerResult;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 class TrackerResultController extends Controller
 {
     /**
@@ -61,10 +63,62 @@ class TrackerResultController extends Controller
     {
         $tracker = new TrackerResult();
         $tracker->tracker_id = $id;
-        $tracker2 = \DB::table('trackers')->where('id', $id)->select('unit_type')->first()->unit_type;
+        $unit = \DB::table('trackers')->where('id', $id)->select('unit_type')->first()->unit_type;
         $results = TrackerResult::all()->where('tracker_id', $id);
 
-        return view('trackers/show', compact('tracker', 'results', 'tracker2'));
+        $init=1;
+
+        if( !($results->isEmpty()) ){
+            $init=0;
+            //$chart = array();
+            $chartTitle = \DB::table('trackers')->where('id', $id)->select('name')->first()->name;
+
+            $chartLabel = array();
+            $chartData = array();
+            foreach($results as $item){
+                //array_push( $chart, array($item->updated_at->format('Y-m-d'), $item->value) );
+                array_push($chartLabel, $item->updated_at->format('Y-m-d'));
+                array_push($chartData, $item->value);
+            }
+
+            //is last record 24h old
+            $lastResult = TrackerResult::all()->where('tracker_id', $id)->sortByDesc('created_at')->first();
+            $lastDateTime = $lastResult->created_at;
+            $now = Carbon::now();
+            $lastResultId = $lastResult->id;
+
+            $canAddNew = 0;
+            $diff = $lastDateTime->diffInHours($now);
+            if( !($lastDateTime->isToday()) ){
+                $canAddNew = 1;
+            }
+
+            return view('trackers/show', compact('tracker', 'results', 'unit', 'chartLabel', 'chartData', 'chartTitle', 'canAddNew', 'diff', 'lastResultId', 'init'));
+        }
+        else{
+            return view('trackers/show', compact('tracker','init'));
+        }
+
+        /*$chart = array();
+        $chartTitle = \DB::table('trackers')->where('id', $id)->select('name')->first()->name;
+
+        foreach($results as $item){
+            array_push( $chart, array($item->updated_at->format('Y-m-d'), $item->value) );
+        }
+
+        //is last record 24h old
+        $lastResult = TrackerResult::all()->where('tracker_id', $id)->sortByDesc('created_at')->first();
+        $lastDateTime = $lastResult->created_at;
+        $now = Carbon::now();
+        $lastResultId = $lastResult->id;
+
+        $canAddNew = 0;
+        $diff = $lastDateTime->diffInHours($now);
+        if( !($lastDateTime->isToday()) ){
+            $canAddNew = 1;
+        }
+
+        return view('trackers/show', compact('tracker', 'results', 'unit', 'chart', 'chartTitle', 'canAddNew', 'diff', 'lastResultId'));*/
     }
 
     /**
@@ -85,9 +139,18 @@ class TrackerResultController extends Controller
      * @param  \App\TrackerResult  $trackerResult
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TrackerResult $trackerResult)
+    public function update(Request $request, $id)
     {
-        //
+        $user = auth()->user();
+
+        $trackerId = \DB::table('tracker_results')->where('id', $id)->select('tracker_id')->first()->tracker_id;
+        $trackerOwner = \DB::table('trackers')->where('id', $trackerId)->select('user_id')->first()->user_id;
+        $tracker_result = TrackerResult::findOrFail($id);
+
+        if( $trackerOwner == ($user->id) ){
+            $tracker_result->update($request->all());
+        }
+        return redirect('trackers/'.$trackerId.'/result');
     }
 
     /**
@@ -96,8 +159,17 @@ class TrackerResultController extends Controller
      * @param  \App\TrackerResult  $trackerResult
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TrackerResult $trackerResult)
+    public function destroy($lastResultId)
     {
-        //
+        $user = auth()->user();
+
+        $trackerId = \DB::table('tracker_results')->where('id', $lastResultId)->select('tracker_id')->first()->tracker_id;
+        $trackerOwner = \DB::table('trackers')->where('id', $trackerId)->select('user_id')->first()->user_id;
+
+        if( $trackerOwner == ($user->id) ){
+            $result = \DB::table('tracker_results')->where('id', $lastResultId)->delete();
+        }
+
+        return redirect('trackers/'.$trackerId.'/result');
     }
 }
