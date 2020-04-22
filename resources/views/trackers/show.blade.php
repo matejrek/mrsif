@@ -6,7 +6,7 @@
     <div class="container">
         <div class="chartWrapper">
             <!--div id="chart" style="width:100%; height:400px; background:rgba(0,0,0,0.2);"></div-->
-             <canvas id="chartJSContainer" width="600" height="400"></canvas>
+             <canvas id="chartJSContainer" style="width:100%; height:400px; background:rgba(255,255,255,1);"></canvas>
         </div>
 
         @if($init == 1)
@@ -23,7 +23,7 @@
                     </div>
                 @endif
 
-                <input class="form-control" type="number"  step="0.5"  min="1" max="200" name="value" placeholder="Enter value of result"><br/>
+                <input class="form-control" type="number"  step="0.1"  min="0" max="2000" name="value" placeholder="Enter value of result"><br/>
 
                 <input type="submit" name="submit" class="btn btn-primary mrsifSubmit">
             </form>
@@ -43,19 +43,19 @@
                         </div>
                     @endif
 
-                    <input class="form-control" type="number"  step="0.5" min="1" max="200" name="value" placeholder="Enter value of result"><br/>
+                    <input class="form-control" type="number"  step="0.1" min="0" max="2000" name="value" placeholder="Enter value of result"><br/>
 
                     <input type="submit" name="submit" class="btn btn-primary mrsifSubmit">
                 </form>
 
             @else
                 <br/>
-                <p><strong>You already added a entry today. {{$diff}}h ago. Next Entry tomorrow or retake.</strong></p><br/>
+                <p><strong>You already added a entry today. {{$diff}}h ago. {{--Next Entry tomorrow or retake.--}} Entry interval is {{$interval}}h.</strong></p><br/>
     
                 <form action="/trackers/result/{{$lastResultId}}/retake" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="PUT">
-                    <input class="form-control" type="number" step="0.5" min="1" max="200" name="value" placeholder="Re-Enter value of last result"><br/>
+                    <input class="form-control" type="number" step="0.1" min="0" max="2000" name="value" placeholder="Re-Enter value of last result"><br/>
 
                     <input type="submit" name="submit" class="btn btn-primary">
 

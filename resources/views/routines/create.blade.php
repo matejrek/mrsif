@@ -1,7 +1,7 @@
-<style>
+<!--style>
     .section{float:left; width:100%; padding:15px; border:1px dotted #ccc;}
     .exercises{float:left; width:100%; padding:15px; border:1px dotted #ccc;}
-</style>
+</style-->
 
 
 @extends('layouts.app')
@@ -9,43 +9,48 @@
 
 @section('content')
     <div class="container">
-    <!--form method="POST" action="/data/submit"-->
-    <form method="POST" action="/routines/store" class="mrsif-form">
-        {{ csrf_field() }}
+        <div class="panel">
+            <!--form method="POST" action="/data/submit"-->
+            <form method="POST" action="/routines/store" class="mrsif-form">
+                {{ csrf_field() }}
 
-        @if(count($errors) >0)
-            <div class="alert alert-danger">
-                <ul>
-                @foreach( $errors->all() as $error) 
-                    <li>{{$error}}</li>
-                @endforeach
-                </ul>
-            </div>
-        @endif
+                @if(count($errors) >0)
+                    <div class="alert alert-danger">
+                        <ul>
+                        @foreach( $errors->all() as $error) 
+                            <li>{{$error}}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
 
 
-        <input class="form-control" type="text" name="name" placeholder="Enter routine name"><br/>
-        <input class="form-control" type="text" name="description" placeholder="Enter a description for this routine"><br/><br/>
+                <input class="form-control" type="text" name="name" placeholder="Enter routine name"><br/>
+                <input class="form-control" type="text" name="description" placeholder="Enter a description for this routine"><br/><br/>
 
-        <div class="sections">
-            <div class="section" id="sections[section-1]" data-section-id="1">
-                <div class="remove-section btn btn-danger">Remove section</div>
-                <div class="exercises">
-                    <input class="form-control" type="text" name="sections[section-1][name]" placeholder="Enter section name"><br/>
-                    <input class="form-control" type="text" name="sections[section-1][description]" placeholder="Enter a description for this section"><br/>
+                <div class="sections">
+                    <div class="section" id="sections[section-1]" data-section-id="1">
+                        <div class="remove-section btn btn-danger">Remove section</div>
+                        <div class="exercises">
+                            <input class="form-control" type="text" name="sections[section-1][name]" placeholder="Enter section name"><br/>
+                            <input class="form-control" type="text" name="sections[section-1][description]" placeholder="Enter a description for this section"><br/>
+                        </div>
+                        <br/>
+                        <div class="add-exercise btn btn-success">Add exercise</div>
+                    </div>
+
                 </div>
-                <br/>
-                <div class="add-exercise btn btn-success">Add exercise</div>
-            </div>
 
+                <div class="add-section btn btn-success">Add Section</div>
+
+                <br/><br/>
+                <input type="submit" name="submit" class="btn btn-primary mrsifSubmit">
+            </form>
         </div>
-
-        <div class="add-section btn btn-success">Add Section</div>
-
-        <br/><br/>
-        <input type="submit" name="submit" class="btn btn-primary mrsifSubmit">
-    </form>
     </div>
+
+
+
     <script>
         //Add exercise
         var exerciseCount = 1;
@@ -66,10 +71,8 @@
             sectionCount++;
             var newSection = '  <div class="section" id="sections[section-'+sectionCount+']" data-section-id="'+sectionCount+'"><div class="remove-section btn btn-danger">Remove section</div>\
                                     <div class="exercises"> \
-                                        <div class="exercise"> \
                                             <input class="form-control" type="text" name="sections[section-'+sectionCount+'][name]" placeholder="Enter section name"><br/> \
                                             <input class="form-control" type="text" name="sections[section-'+sectionCount+'][description]" placeholder="Enter section description"><br/> \
-                                        </div> \
                                     </div> \
                                     <br/> \
                                     <div class="add-exercise btn btn-success">Add exercise</div> \

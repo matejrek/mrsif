@@ -87,13 +87,17 @@ class TrackerResultController extends Controller
             $now = Carbon::now();
             $lastResultId = $lastResult->id;
 
+            //interval in hours
+            $interval = \DB::table('trackers')->where('id', $id)->select('interval')->first()->interval;
+
             $canAddNew = 0;
             $diff = $lastDateTime->diffInHours($now);
-            if( !($lastDateTime->isToday()) ){
+            //if( !($lastDateTime->isToday()) ){
+            if($diff > $interval){
                 $canAddNew = 1;
             }
 
-            return view('trackers/show', compact('tracker', 'results', 'unit', 'chartLabel', 'chartData', 'chartTitle', 'canAddNew', 'diff', 'lastResultId', 'init'));
+            return view('trackers/show', compact('tracker', 'results', 'unit', 'chartLabel', 'chartData', 'chartTitle', 'canAddNew', 'diff', 'lastResultId', 'init', 'interval'));
         }
         else{
             return view('trackers/show', compact('tracker','init'));

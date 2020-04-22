@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware' => ['auth']], function () {
+
 Route::get('/app', 'HomeController@index')->name('app');
 
 //Routines
@@ -49,3 +51,6 @@ Route::get('/feedback', function(){
     return view('feedback');
 });
 Route::post('/feedback/submit', 'FeedbackController@store');
+
+
+});
