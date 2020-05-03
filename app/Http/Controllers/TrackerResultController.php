@@ -90,6 +90,8 @@ class TrackerResultController extends Controller
             //interval in hours
             $interval = \DB::table('trackers')->where('id', $id)->select('interval')->first()->interval;
 
+            //if interval is less than 24h, then add info in daily sum (for calories)
+
             $canAddNew = 0;
             $diff = $lastDateTime->diffInHours($now);
             //if( !($lastDateTime->isToday()) ){

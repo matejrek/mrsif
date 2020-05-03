@@ -51,6 +51,10 @@
 
 
 
+
+@endsection
+
+@section('scripts')
     <script>
         //Add exercise
         var exerciseCount = 1;
@@ -107,5 +111,4 @@
         });
 
     </script>
-
 @endsection
