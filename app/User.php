@@ -46,4 +46,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Tracker');
     }
 
+    public function tasks(){
+        return $this->hasMany('App\Task');
+    }
+
 }

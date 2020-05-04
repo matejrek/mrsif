@@ -15,12 +15,23 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //remove all tasks older than today and dont have daily/weeky recurr, if reccur daily/weeky recurr 0, 1-7,8
+        //remove all tasks older than today 
+        /*$rmtasks = Task::all()
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('dateTime', '<', Carbon::now());
+
+        foreach($rmtasks as $rmtask){
+            $rmtask->delete();
+        }*/
+        //\DB::table('tasks')->where('user_id', auth()->user()->id)->where('dateTime', '<', Carbon::now())->delete();
+
+        //list all tasks
         $tasks = Task::all()
             ->where('user_id', '=', auth()->user()->id)
             ->where('dateTime', '>=', Carbon::now());
 
         return view('tasks/index', compact('tasks'));
+
     }
 
     /**
@@ -47,12 +58,12 @@ class TaskController extends Controller
         $task->name = $requestArr['name'];
         $task->description = $requestArr['description'];
         $task->dateTime = $requestArr['dateTime'];
-        if( $requestArr['recurring'] ){
+        /*if( $requestArr['recurring'] ){
             $task->recurring = $requestArr['recurring'];
         }
         else{
             $task->recurring = 0;
-        } 
+        } */
         $task->save();
         return redirect('/tasks');
     }
@@ -97,8 +108,12 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        $user = auth()->user();
+
+        $user->tasks()->whereId($id)->delete();
+
+        return redirect('/tasks');
     }
 }

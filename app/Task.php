@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    //
+    protected $fillable = [
+        'name', 'description', 'dateTime',
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }

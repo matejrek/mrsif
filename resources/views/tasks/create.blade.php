@@ -31,7 +31,8 @@
             <input class="form-control" type="hidden" name="dateTime" id="dateTimeData">
             <div id="datetimepicker"></div>
         </div>
- 
+
+        {{--
         <!-- Switch -->
         <div class="switch">
             <label for="recurrSwitch">
@@ -54,6 +55,7 @@
                 </label>
             </div>
         </div>
+        --}}
 
 
 
@@ -82,7 +84,10 @@
                 sideBySide: true,
                 format: 'DD/MM/YYYY, HH:mm'
             });
-            $('#datetimepicker').on("change.datetimepicker", function (e) {
+
+            $('#dateTimeData').val(moment().format('YYYY-MM-DD HH:mm'));
+
+            $('#datetimepicker').on('change.datetimepicker', function (e) {
                 //console.log(e.date.format('YYYY-MM-DD HH:mm:ss'));
                 $('#dateTimeData').val(e.date.format('YYYY-MM-DD HH:mm'));
             });

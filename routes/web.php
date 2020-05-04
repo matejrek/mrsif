@@ -50,6 +50,7 @@ Route::put('/trackers/result/{id}/retake', 'TrackerResultController@update');
 Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/create', 'TaskController@create');
 Route::post('/tasks/store', 'TaskController@store');
+Route::get('/tasks/{id}/complete', 'TaskController@destroy');
 
 //Feedback
 Route::get('/feedback', function(){
