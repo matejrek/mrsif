@@ -46,11 +46,16 @@ Route::post('/trackers/{id}/result/store', 'TrackerResultController@store');
 Route::delete('/trackers/results/{id}/delete', 'TrackerResultController@destroy');
 Route::put('/trackers/result/{id}/retake', 'TrackerResultController@update');
 
+Route::get('/trackers/weekly/{id}', 'TrackerResultController@weekly');
+Route::get('/trackers/monthly/{id}', 'TrackerResultController@monthly');
+Route::get('/trackers/all/{id}', 'TrackerResultController@all');
+
 //Tasks
 Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/create', 'TaskController@create');
 Route::post('/tasks/store', 'TaskController@store');
 Route::get('/tasks/{id}/complete', 'TaskController@destroy');
+
 
 //Feedback
 Route::get('/feedback', function(){

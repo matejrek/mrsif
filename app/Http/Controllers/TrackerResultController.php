@@ -99,10 +99,10 @@ class TrackerResultController extends Controller
                 $canAddNew = 1;
             }
 
-            return view('trackers/show', compact('tracker', 'results', 'unit', 'chartLabel', 'chartData', 'chartTitle', 'canAddNew', 'diff', 'lastResultId', 'init', 'interval'));
+            return view('trackers/show', compact('tracker', 'results', 'unit', 'chartLabel', 'chartData', 'chartTitle', 'canAddNew', 'diff', 'lastResultId', 'init', 'interval', 'id'));
         }
         else{
-            return view('trackers/show', compact('tracker','init'));
+            return view('trackers/show', compact('tracker','init', 'id'));
         }
 
         /*$chart = array();
@@ -178,4 +178,52 @@ class TrackerResultController extends Controller
 
         return redirect('trackers/'.$trackerId.'/result');
     }
+
+    public function weekly($id){
+        $user = auth()->user();
+
+        $trackerId = \DB::table('tracker_results')->where('id', $id)->select('tracker_id')->first()->tracker_id;
+        $trackerOwner = \DB::table('trackers')->where('id', $trackerId)->select('user_id')->first()->user_id;
+
+        if( $trackerOwner == ($user->id) ){
+            $trackers = TrackerResult::all()
+                //->where('user_id', '=', auth()->user()->id)
+                ->where('tracker_id', $id)
+                ->where('created_at', '>=', Carbon::now()->subDays(7))
+                ->sortBy('created_at');
+        }
+
+        return $trackers;
+    }    
+
+    public function monthly($id){
+        $user = auth()->user();
+
+        $trackerId = \DB::table('tracker_results')->where('id', $id)->select('tracker_id')->first()->tracker_id;
+        $trackerOwner = \DB::table('trackers')->where('id', $trackerId)->select('user_id')->first()->user_id;
+
+        if( $trackerOwner == ($user->id) ){
+            $trackers = TrackerResult::all()
+                ->where('tracker_id', $id)
+                ->where('created_at', '>=', Carbon::now()->subDays(30))
+                ->sortBy('created_at');
+        }
+
+        return $trackers;
+    } 
+
+    public function all($id){
+        $user = auth()->user();
+
+        $trackerId = \DB::table('tracker_results')->where('id', $id)->select('tracker_id')->first()->tracker_id;
+        $trackerOwner = \DB::table('trackers')->where('id', $trackerId)->select('user_id')->first()->user_id;
+
+        if( $trackerOwner == ($user->id) ){
+            $trackers = TrackerResult::all()
+                ->where('tracker_id', $id)
+                ->sortBy('created_at');
+        }
+
+        return $trackers;
+    }   
 }

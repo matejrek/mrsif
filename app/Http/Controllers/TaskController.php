@@ -23,7 +23,7 @@ class TaskController extends Controller
         foreach($rmtasks as $rmtask){
             $rmtask->delete();
         }*/
-        //\DB::table('tasks')->where('user_id', auth()->user()->id)->where('dateTime', '<', Carbon::now())->delete();
+        \DB::table('tasks')->where('user_id', auth()->user()->id)->where('dateTime', '<', Carbon::now())->delete();
 
         //list all tasks
         $tasks = Task::all()

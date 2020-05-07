@@ -1,4 +1,6 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 @extends('layouts.app')
 
 
@@ -50,7 +52,7 @@
 
             @else
                 <br/>
-                <p><strong>You already added a entry today. {{$diff}}h ago. {{--Next Entry tomorrow or retake.--}} Entry interval is {{$interval}}h.</strong></p><br/>
+                <p><strong>You already added a entry in last interval. {{$diff}}h ago. {{--Next Entry tomorrow or retake.--}} Entry interval is {{$interval}}h.</strong></p><br/>
     
                 <form action="/trackers/result/{{$lastResultId}}/retake" method="POST">
                     {{ csrf_field() }}
@@ -62,42 +64,144 @@
                 </form>
             @endif
         @endif
+        <br/>
+        <hr/>
+        <button type="button" class="btn btn-primary" id="getWeekly">Show last week</button> 
+        <button type="button" class="btn btn-primary" id="getMonthly">Show last month</button>
+        <button type="button" class="btn btn-primary" id="getAll">Show all</button>
+    </div>
+@endsection
 
-        <script type="text/javascript">
-            $(document).ready(function(){
-                var isInit = @json($init);
-                if( isInit == 0){
-                    var chartLabel = @json($chartLabel ?? '');
-                    var chartData = @json($chartData ?? '');
-                    var unit = @json($unit ?? '');
-                    var title = @json($chartTitle ?? '');
-
-                    var options = {
-                        type: 'line',
-                        data: {
-                            labels: chartLabel,
-                            datasets: [
-                                {
-                                    label: 'Unit:' + unit,
-                                    data: chartData,
+@section('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/moment@2.25.0/moment.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var isInit = @json($init);
+            if( isInit == 0){
+                var chartLabel = @json($chartLabel ?? '');
+                var chartData = @json($chartData ?? '');
+                var unit = @json($unit ?? '');
+                var title = @json($chartTitle ?? '');
+                //console.log(chartLabel);
+                //console.log(chartData);
+                var options = {
+                    type: 'line',
+                    data: {
+                        labels: chartLabel,
+                        datasets: [
+                            {
+                                label: 'Unit:' + unit,
+                                data: chartData,
                                 borderWidth: 4
-                                }
-                                ]
-                            },
-                            options:{
-                            scales:{
-                                yAxes:[{
-                                    ticks:{
-                                        reverse:false
-                                    }
-                                }]
                             }
+                            ]
+                        },
+                        options:{
+                        scales:{
+                            yAxes:[{
+                                ticks:{
+                                    reverse:false
+                                }
+                            }]
                         }
                     }
-                    var ctx = document.getElementById('chartJSContainer').getContext('2d');
-                    new Chart(ctx, options);
                 }
+                var ctx = document.getElementById('chartJSContainer').getContext('2d');
+                new Chart(ctx, options);
+            }
+
+            function updateChart(data){
+                var chartData = Object.values(data).map(e => e.value);
+                var chartLabel = Object.values(data).map(e => moment(e.created_at).format('YYYY-MM-DD'));
+                var $chart = $('#chartJSContainer');
+                var lineChartHome = new Chart($chart[0].getContext("2d"), {
+
+                    type: 'line',
+                    data: {
+                        labels: chartLabel,
+                        datasets: [
+                            {
+                                label: 'Unit:' + unit,
+                                data: chartData,
+                                borderWidth: 4
+                            }
+                            ]
+                        },
+                        options:{
+                        scales:{
+                            yAxes:[{
+                                ticks:{
+                                    reverse:false
+                                }
+                            }]
+                        }
+                    }
+                })
+            }
+
+
+            $('#getWeekly').on('click', function(){
+                getWeekly();
             });
-        </script>
-    </div>
+            function getWeekly(){
+                var trackerId = @json($id);
+                $.ajax({
+                    type: 'GET',
+                    url: '/trackers/weekly/'+trackerId+'',
+                    success: function (data){
+                        //console.log(data);
+
+                        /*const value = Object.values(data).map(e => e.value)
+                        console.log(value)
+
+                        const label = Object.values(data).map(e => e.created_at)
+                        console.log(label)*/
+
+                        //rebuild graph
+                        updateChart(data);
+                    },
+                    error: function(){
+                        console.log(data);
+                    }
+                });
+            }
+
+            $('#getMonthly').on('click', function(){
+                getMonthly();
+            });
+            function getMonthly(){
+                var trackerId = @json($id);
+                $.ajax({
+                    type: 'GET',
+                    url: '/trackers/monthly/'+trackerId+'',
+                    success: function (data){
+                        //console.log(data);
+                        updateChart(data);
+                    },
+                    error: function(){
+                        console.log(data);
+                    }
+                });
+            }
+
+            $('#getAll').on('click', function(){
+                getAll();
+            });
+            function getAll(){
+                var trackerId = @json($id);
+                $.ajax({
+                    type: 'GET',
+                    url: '/trackers/all/'+trackerId+'',
+                    success: function (data){
+                        //console.log(data);
+                        updateChart(data);
+                    },
+                    error: function(){
+                        console.log(data);
+                    }
+                });
+            }
+        });
+    </script>
+
 @endsection
