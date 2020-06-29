@@ -2,18 +2,21 @@
 
 
 @section('content')
+    <div class="heading">
+        <h1>Tasks</h1>
+    </div>
     <div class="container">
         <div id="ctime">
             <span class="ctime">Current time: {{ \Carbon\Carbon::now() }}</span>
         </div>
         <div class="taskListContainer">
-            <ul id="tasklist">
+            <ul id="tasklist" class="itemList">
             @foreach( $tasks->all() as $item ) 
-                <li>
+                <li><a href="/tasks/{{$item->id}}/complete">
                     Name:{{$item->name}} <br/>
                     Description: {{$item->description}} <br/>
                     Due: {{$item->dateTime}} <br/>
-                    <a href="/tasks/{{$item->id}}/complete">Complete</a>
+                     - Click to complete</a>
                 </li>
             @endforeach
             </ul>

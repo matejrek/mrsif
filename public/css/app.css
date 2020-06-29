@@ -10884,22 +10884,123 @@ a.text-dark:focus {
   }
 }
 
+a {
+  color: #9561e2;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #8143dc;
+}
+
+.sidebar {
+  float: left;
+  width: 300px;
+  background: #6574cd;
+  height: 100vh;
+}
+
+.sidebar .navbarBrand {
+  float: left;
+  width: 100%;
+  padding: 0 15px;
+  margin: 15px 0;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.sidebar .navbarBrand:hover {
+  color: #f2f2f2;
+}
+
+.mainContent {
+  float: left;
+  width: calc(100% - 300px);
+  padding: 0 15px;
+}
+
+ul.navbar {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.navbar li {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 2px 0;
+}
+
+ul.navbar li a {
+  float: left;
+  width: 100%;
+  color: #ffffff;
+  padding: 15px;
+}
+
+ul.navbar li a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+ul.navbar li.dropdown {
+  background: #3490dc;
+  padding: 15px;
+}
+
+ul.navbar li.dropdown a {
+  padding: 0px;
+  width: auto;
+  margin: 0 15px 0 0;
+}
+
 /*panel*/
 
 .panel {
   float: left;
   width: 100%;
-  border-radius: 6px;
+  border-radius: 0;
   background: #ffffff;
   padding: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/*heading*/
+
+.heading {
+  float: left;
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 3px solid #9561e2;
+  margin: 0 0 30px 0;
+}
+
+.heading h1 {
+  float: left;
+  width: 100%;
+  color: #9561e2;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 15px 0;
+  padding: 0;
 }
 
 /*routines*/
 
+.sections {
+  float: left;
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
 .section {
   float: left;
   width: 100%;
+  margin: 10px 0;
 }
 
 .section {
@@ -10934,5 +11035,135 @@ a.text-dark:focus {
 
 .add-section {
   margin: 30px 0 15px 0;
+}
+
+ul.itemList {
+  float: left;
+  width: 100%;
+  margin: 0 0 15px 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.itemList li {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul.itemList li a {
+  float: left;
+  width: 100%;
+  padding: 10px;
+  background: #3490dc;
+  color: #ffffff;
+  border: 1px solid #52a1e1;
+  border-top-color: #3490dc;
+}
+
+ul.itemList li a:hover {
+  background: #52a1e1;
+}
+
+.routineProgramme {
+  float: left;
+  width: 100%;
+  padding: 30px;
+}
+
+.routineProgramme ul.sectionList {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.routineProgramme ul.sectionList li.section {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  background: beige;
+  display: none;
+}
+
+.routineProgramme ul.sectionList li.section ul.exerciseList {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+}
+
+.routineProgramme ul.sectionList li.section ul.exerciseList li.exercise {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  border: none;
+}
+
+.routineProgramme ul.sectionList li.section ul.exerciseList li.exercise .title {
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.routineProgramme ul.sectionList li.section ul.exerciseList li.exercise .description {
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.routineProgramme ul.sectionList li.section ul.exerciseList li.exercise.active {
+  left: 0;
+}
+
+.routineProgramme ul.sectionList li.section.active {
+  display: block;
+}
+
+.routineProgramme .navigation {
+  float: left;
+  width: 100%;
+}
+
+.routineProgramme .navigation .previous,
+.routineProgramme .navigation .next {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  background: #3490dc;
+  color: #ffffff;
+  border: 1px solid #ccc;
+}
+
+.routineProgramme .navigation .previous:hover,
+.routineProgramme .navigation .next:hover {
+  background: #52a1e1;
+  cursor: pointer;
+}
+
+.routineProgramme .navigation .previous {
+  text-align: left;
+}
+
+.routineProgramme .navigation .next {
+  text-align: right;
 }
 

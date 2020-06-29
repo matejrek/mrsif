@@ -8,6 +8,10 @@
 
 
 @section('content')
+    <div class="heading">
+        <h1>Create New Routine</h1>
+    </div>
+
     <div class="container">
         <div class="panel">
             <!--form method="POST" action="/data/submit"-->

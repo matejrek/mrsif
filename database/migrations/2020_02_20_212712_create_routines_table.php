@@ -20,6 +20,9 @@ class CreateRoutinesTable extends Migration
             $table->string('description');
             $table->timestamps();
 
+            //$table->unsignedBigInteger('sectionProgress');
+            //$table->unsignedBigInteger('exerciseProgress');
+
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

@@ -32,7 +32,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{--<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -51,22 +51,22 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <li class="navItem">
+                                <a class="navLink" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li class="navItem">
+                                    <a class="navLink" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="navItem dropdown">
+                                <a id="navbarDropdown" class="navLink dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdownItem" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -77,32 +77,92 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/app">Home</a>
+                            <li class="navItem">
+                                <a class="navLink" href="/app">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/data">Add new routine</a>
+                            <li class="navItem">
+                                <a class="navLink" href="/data">Add new routine</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/routines">View routines</a>
+                            <li class="navItem">
+                                <a class="navLink" href="/routines">View routines</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/trackers">Trackers</a>
+                            <li class="navItem">
+                                <a class="navLink" href="/trackers">Trackers</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tasks">Tasks</a>
+                            <li class="navItem">
+                                <a class="navLink" href="/tasks">Tasks</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/feedback">Give feeback</a>
+                            <li class="navItem">
+                                <a class="navLink" href="/stopwatch">Stopwatch</a>
+                            </li>
+                            <li class="navItem">
+                                <a class="navLink" href="/feedback">Give feeback</a>
                             </li>
                         @endguest
 
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>--}}
+        <div class="sidebar">
+            <a class="navbarBrand" href="{{ url('/') }}">
+                {{ config('app.name', 'Laravel') }}
+            </a>
 
-        <main class="py-4">
+            <ul class="navbar">
+                <!-- Authentication Links -->
+                @guest
+                    <li class="navItem">
+                        <a class="navLink" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="navItem">
+                            <a class="navLink" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="navItem dropdown">
+                        <a id="navbarDropdown" class="navLink dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdownMenu dropdownMenuRight" aria-labelledby="navbarDropdown">
+                            <a class="dropdownItem" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    <li class="navItem">
+                        <a class="navLink" href="/app">Home</a>
+                    </li>
+                    <li class="navItem">
+                        <a class="navLink" href="/data">Add new routine</a>
+                    </li>
+                    <li class="navItem">
+                        <a class="navLink" href="/routines">View routines</a>
+                    </li>
+                    <li class="navItem">
+                        <a class="navLink" href="/trackers">Trackers</a>
+                    </li>
+                    <li class="navItem">
+                        <a class="navLink" href="/tasks">Tasks</a>
+                    </li>
+                    <li class="navItem">
+                        <a class="navLink" href="/stopwatch">Stopwatch</a>
+                    </li>
+                    <li class="navItem">
+                        <a class="navLink" href="/feedback">Give feeback</a>
+                    </li>
+                @endguest
+            </ul>
+        </div>
+        <main class="mainContent">
             @yield('content')
         </main>
     </div>

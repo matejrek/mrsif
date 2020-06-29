@@ -1,11 +1,17 @@
 /*panel*/
-.panel{float:left; width:100%; border-radius:6px; background:$white; padding:15px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
+.panel{float:left; width:100%; border-radius:0; background:$white; padding:15px;}
 //input.form-control{border:none; border-bottom:1px solid $black; border-radius:0; background:transparent;}
 
+/*heading*/
+.heading{float:left; width:100%; padding:15px 0; border-bottom:3px solid $purple; margin:0 0 30px 0;
+    h1{float:left; width:100%; color:$purple; font-size:24px; font-weight:600; text-transform:uppercase; margin:15px 0; padding:0;}
+}
+
 /*routines*/
-.section{float:left; width:100%;}
+.sections{float:left; width:100%; padding:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.section{float:left; width:100%; margin:10px 0;}
 .section{float:left; width:100%;
     .remove-section{/*border-radius:50%; width:50px; height:50px;*/ float:right; clear:both;}
     .add-exercise{/*border-radius:50%; width:50px; height:50px;*/ clear:both;}
@@ -15,6 +21,37 @@
 .add-section{margin:30px 0 15px 0;}
 
 
+//item list
+ul.itemList{float:left; width:100%; margin:0 0 15px 0; padding:0; list-style-type:none;
+    li{float:left; width:100%; margin:0; padding:0;
+        a{float:left; width:100%; padding:10px; background:$blue; color:$white; border:1px solid lighten($blue,7%); border-top-color:$blue;
+            &:hover{background:lighten($blue,7%);}
+        }
+    }
+}
+
+//routine programme
+.routineProgramme{float:left; width:100%; padding:30px;
+    ul.sectionList{float:left; width:100%; padding:0; margin:0; list-style-type:none;
+        li.section{float:left; width:100%; padding:0; margin:0; font-size:1.75rem; font-weight:600; background:beige; display:none;
+            ul.exerciseList{float:left; width:100%; padding:0; margin:0; list-style-type:none; position:relative; overflow:hidden; height:500px;
+                li.exercise{float:left; width:100%; padding:0; margin:0; position:absolute; top:0; bottom:0; left:100%; border:none;
+                    .title{float:left; width:100%; text-align:center; font-size:2.5rem; font-weight:600;}
+                    .description{float:left; width:100%; text-align:center; font-size:1.25rem; line-height:1.5;}
+                    &.active{left:0;}
+                }
+            }
+            &.active{display:block;}
+        }
+    }
+    .navigation{float:left; width:100%;
+        .previous, .next{float:left; width:50%; padding:10px; background:$blue; color:$white; border:1px solid #ccc;
+            &:hover{background:lighten($blue,7%); cursor:pointer;}
+        }
+        .previous{text-align:left;}
+        .next{text-align:right;}
+    }
+}
 
 
 

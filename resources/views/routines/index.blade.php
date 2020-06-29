@@ -3,6 +3,10 @@
 
 
 @section('content')
+    <div class="heading">
+        <h1>Routines</h1>
+    </div>
+
         <ul>
         @foreach($routines as $item)
             <li>

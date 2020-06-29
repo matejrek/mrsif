@@ -56,6 +56,11 @@ Route::get('/tasks/create', 'TaskController@create');
 Route::post('/tasks/store', 'TaskController@store');
 Route::get('/tasks/{id}/complete', 'TaskController@destroy');
 
+//Stopwatch
+Route::get('/stopwatch', function(){
+    return view('stopwatch/index');
+});
+
 
 //Feedback
 Route::get('/feedback', function(){

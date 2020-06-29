@@ -2,10 +2,14 @@
 
 
 @section('content')
+    <div class="heading">
+        <h1>Trackers</h1>
+    </div>
+
     <div class="container">
-        <ul>
+        <ul class="itemList">
         @foreach( $results->all() as $item ) 
-            <li>{{$item->name}} | <a href="/trackers/{{$item->id}}/result">View results and add new data</a></li>
+            <li><a href="/trackers/{{$item->id}}/result">{{$item->name}}</a></li>
         @endforeach
         </ul>
 

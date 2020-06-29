@@ -6,7 +6,9 @@
 
 
 @section('content')
-
+    <div class="heading">
+        <h1>Edit Routine</h1>
+    </div>
 
 <form action="/routines/{{$routine->id}}/edit/save" method="POST">
     {{ csrf_field() }}

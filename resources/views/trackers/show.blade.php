@@ -113,6 +113,8 @@
             function updateChart(data){
                 var chartData = Object.values(data).map(e => e.value);
                 var chartLabel = Object.values(data).map(e => moment(e.created_at).format('YYYY-MM-DD'));
+                //console.log(chartData);
+                //console.log(Math.max.apply(null, chartData));
                 var $chart = $('#chartJSContainer');
                 var lineChartHome = new Chart($chart[0].getContext("2d"), {
 
@@ -131,7 +133,9 @@
                         scales:{
                             yAxes:[{
                                 ticks:{
-                                    reverse:false
+                                    reverse:false,
+                                    max: (Math.max.apply(null, chartData) + 20),
+                                    min: (Math.min.apply(null, chartData) - 20)
                                 }
                             }]
                         }

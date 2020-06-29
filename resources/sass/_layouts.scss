@@ -1,0 +1,29 @@
+a{color:$purple;
+    &:hover{text-decoration:none; color:darken($purple,7%);}
+}
+
+.sidebar{float:left; width:300px; background:$indigo; height:100vh;
+    .navbarBrand{float:left; width:100%; padding:0 15px; margin:15px 0; color:$white; text-transform:uppercase; font-size:20px;
+        &:hover{color:#f2f2f2;}
+    }
+}
+.mainContent{float:left; width:calc(100% - 300px); padding:0 15px;}
+ul.navbar{float:left; width:100%; margin:0; padding:0; list-style-type:none;
+    li{float:left; width:100%; padding:0; margin:0 0 2px 0;
+        a{float:left; width:100%; color:$white; padding:15px;
+            &:hover{background:rgba($white,0.15);}
+        }
+        &.dropdown{background:$blue; padding:15px;
+            a{padding:0px; width:auto; margin:0 15px 0 0;}
+        }
+    }
+}
+
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 1280px) {
+
+}
