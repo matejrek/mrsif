@@ -37,6 +37,9 @@
 
 
     <div class="routineProgramme">
+        <div class="progressBar">
+            <div class="progress"></div>
+        </div>
         <ul class="sectionList">
             @foreach( $routine['sections'] as $item )
                 <li @if (!$loop->first && !$loop->last) class="section" @endif @if ($loop->first) class="section first" @endif @if ($loop->last) class="section last" @endif>
@@ -56,6 +59,9 @@
                 </li>
             @endforeach
         </ul>
+        <div class="finish">
+            Yaay, you finished the routine! :)
+        </div>
         <div class="navigation">
             <div class="previous">
                 < previous
@@ -81,6 +87,22 @@
                 $('.routineProgramme .sectionList .section:nth-child('+s+') .exerciseList .exercise:nth-child('+e+')').addClass('active');
             }
             setActiveSectionAndExercise(section, exercise);
+
+            function routineProgress(){
+                var numOfSections = $('.routineProgramme .sectionList .section').length;
+                var numOfExercises = $('.routineProgramme .sectionList .section .exerciseList .exercise').length;
+
+                var numOfCompletedExercises = 0;
+                for(var i = 1; i<section; i++){
+                    numOfCompletedExercises += $('.routineProgramme .sectionList .section:nth-child('+i+') .exerciseList li').length;
+                }
+                numOfCompletedExercises += exercise;
+                var percentage = (100 / numOfExercises) * numOfCompletedExercises;
+                $('.progressBar .progress').css('width',percentage+'%');
+                console.log(percentage + "%");
+            }
+            routineProgress();
+
 
             //set sizing
             function setSizings(){
@@ -120,13 +142,15 @@
                         setActiveSectionAndExercise(section, exercise);
                     }
                 }
-                console.log("Section " + section + ", Exercis: " + exercise + "\n\n");
+                //console.log("Section " + section + ", Exercis: " + exercise + "\n\n");
+                routineProgress();
             });
                 
             $('.next').on('click', function(){
                 if($('.section.active').hasClass('last') && $('.exercise.active').hasClass('last')){
                     //if its last exercise in last section then call finish window
                     //console.log("Finished!");
+                    $('.finish').fadeIn();
                 }
                 else{
 
@@ -147,7 +171,8 @@
                         //console.log("move to next section");
                     }
                 }
-                console.log("Section " + section + ", Exercis: " + exercise + "\n\n");
+                //console.log("Section " + section + ", Exercis: " + exercise + "\n\n");
+                routineProgress();
             //var sectionCount = $('.routineProgramme .sectionList').chindren().length();
             });
 

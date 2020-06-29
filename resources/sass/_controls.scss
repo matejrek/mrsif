@@ -31,7 +31,10 @@ ul.itemList{float:left; width:100%; margin:0 0 15px 0; padding:0; list-style-typ
 }
 
 //routine programme
-.routineProgramme{float:left; width:100%; padding:30px;
+.routineProgramme{float:left; width:100%; padding:30px; position:relative;
+    .progressBar{float:left; width:100%; background:$blue; height:5px;
+        .progress{float:left; width:100%; background:$yellow; height:5px;}
+    }
     ul.sectionList{float:left; width:100%; padding:0; margin:0; list-style-type:none;
         li.section{float:left; width:100%; padding:0; margin:0; font-size:1.75rem; font-weight:600; background:beige; display:none;
             ul.exerciseList{float:left; width:100%; padding:0; margin:0; list-style-type:none; position:relative; overflow:hidden; height:500px;
@@ -43,6 +46,9 @@ ul.itemList{float:left; width:100%; margin:0 0 15px 0; padding:0; list-style-typ
             }
             &.active{display:block;}
         }
+    }
+    .finish{float:left; width:100%; position:absolute; top:0; left:0; bottom:0; z-index:5; background:$white; display:none;
+        color:$black; font-size:3rem; padding:120px 30px; text-align:center;
     }
     .navigation{float:left; width:100%;
         .previous, .next{float:left; width:50%; padding:10px; background:$blue; color:$white; border:1px solid #ccc;

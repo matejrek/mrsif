@@ -11070,6 +11070,21 @@ ul.itemList li a:hover {
   float: left;
   width: 100%;
   padding: 30px;
+  position: relative;
+}
+
+.routineProgramme .progressBar {
+  float: left;
+  width: 100%;
+  background: #3490dc;
+  height: 5px;
+}
+
+.routineProgramme .progressBar .progress {
+  float: left;
+  width: 100%;
+  background: #ffed4a;
+  height: 5px;
 }
 
 .routineProgramme ul.sectionList {
@@ -11136,6 +11151,22 @@ ul.itemList li a:hover {
 
 .routineProgramme ul.sectionList li.section.active {
   display: block;
+}
+
+.routineProgramme .finish {
+  float: left;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+  background: #ffffff;
+  display: none;
+  color: #000000;
+  font-size: 3rem;
+  padding: 120px 30px;
+  text-align: center;
 }
 
 .routineProgramme .navigation {
