@@ -82,6 +82,9 @@
             var section = 1;
             var exercise = 1;
 
+            //get progress from db and set it
+
+
             function setActiveSectionAndExercise(s, e){
                 $('.routineProgramme .sectionList .section:nth-child('+s+')').addClass('active');
                 $('.routineProgramme .sectionList .section:nth-child('+s+') .exerciseList .exercise:nth-child('+e+')').addClass('active');

@@ -46,7 +46,9 @@
 
 </form>
 
+@endsection
 
+@section('scripts')
 <script>
     //Add exercise
     //var exerciseCount = 1;
@@ -68,15 +70,13 @@
     //Add new section
     //var sectionCount=1;
     $(document).on('click', '.add-section', function(){
-        var sectionCount = $(this).closest('.sections').find('.section').length + 1;
+        var sectionCount = $('.sections .section').length + 1;
         //console.log("section count: " + sectionCount);
         //var sectionCount = $(this).siblings('.sections').find('.section:last').attr('data-section-id') + 1;
         var newSection = '  <div id="sections[section-'+sectionCount+']" data-section-id="'+sectionCount+'" class="section"><div class="remove-section btn btn-danger">Remove section</div> \
                                 <div class="exercises"> \
-                                    <div class="exercise"> \
-                                        <input class="form-control" type="text" name="sections[section-'+sectionCount+'][name]" placeholder="Enter section name"><br/> \
-                                        <input class="form-control" type="text" name="sections[section-'+sectionCount+'][description]" placeholder="Enter section description"><br/> \
-                                    </div> \
+                                    <input class="form-control" type="text" name="sections[section-'+sectionCount+'][name]" placeholder="Enter section name"><br/> \
+                                    <input class="form-control" type="text" name="sections[section-'+sectionCount+'][description]" placeholder="Enter section description"><br/> \
                                 </div> \
                                 <br/> \
                                 <div class="add-exercise btn btn-success">Add exercise</div> \
@@ -92,9 +92,4 @@
         $(this).parents('.exercise').empty().remove();
     });
 </script>
-
-
-  
-
 @endsection
-

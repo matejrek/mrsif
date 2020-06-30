@@ -47,7 +47,7 @@ ul.itemList{float:left; width:100%; margin:0 0 15px 0; padding:0; list-style-typ
             &.active{display:block;}
         }
     }
-    .finish{float:left; width:100%; position:absolute; top:0; left:0; bottom:0; z-index:5; background:$white; display:none;
+    .finish{float:left; width:100%; position:absolute; top:35px; left:0; bottom:30px; z-index:5; background:$white; display:none;
         color:$black; font-size:3rem; padding:120px 30px; text-align:center;
     }
     .navigation{float:left; width:100%;
