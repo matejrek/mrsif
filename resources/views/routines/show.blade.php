@@ -5,7 +5,7 @@
     <div class="heading">
         <h1>Routine</h1>
     </div>
-    <ul>
+    <ul class="sideRoutineList scrollbar">
         <li>
             {{ $routine['name'] }}
             |
@@ -16,14 +16,16 @@
             <a href="delete/{{$routine['id']}}">
                 Delete
             </a>
-            <ul>
+            <ul class="sideSectionList">
                 @foreach( $routine['sections'] as $item )
                     <li>
-                        <strong>Section:</strong> {{$item['name']}}
-                        <ul>
+                        <strong>Section:</strong> 
+                        <div class="name">{{$item['name']}}</div>
+                        <ul class="sideExerciseList">
                         @foreach( $item['exercises'] as $item2 )
                             <li>
-                                <strong>Exercise:</strong> {{$item2['name']}}
+                                <strong>Exercise:</strong> 
+                                <div class="name">{{$item2['name']}}</div>
                             </li>
                         @endforeach
                         </ul>
@@ -102,7 +104,7 @@
                 numOfCompletedExercises += exercise;
                 var percentage = (100 / numOfExercises) * numOfCompletedExercises;
                 $('.progressBar .progress').css('width',percentage+'%');
-                console.log(percentage + "%");
+                //console.log(percentage + "%");
             }
             routineProgress();
 

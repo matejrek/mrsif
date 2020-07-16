@@ -11066,6 +11066,68 @@ ul.itemList li a:hover {
   background: #52a1e1;
 }
 
+ul.sideRoutineList {
+  float: left;
+  width: 320px;
+  height: 500px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border: 1px solid #4dc0b5;
+}
+
+ul.sideRoutineList li {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul.sideRoutineList li ul.sideSectionList {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #3490dc;
+  background: #3490dc;
+  list-style-type: none;
+}
+
+ul.sideRoutineList li ul.sideSectionList li {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  padding: 10px;
+}
+
+ul.sideRoutineList li ul.sideSectionList li .name {
+  float: left;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+ul.sideRoutineList li ul.sideSectionList li ul.sideExerciseList {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.sideRoutineList li ul.sideSectionList li ul.sideExerciseList li {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 1px 0;
+  background: #9561e2;
+  color: #ffffff;
+}
+
 .routineProgramme {
   float: left;
   width: 100%;
@@ -11078,6 +11140,7 @@ ul.itemList li a:hover {
   width: 100%;
   background: #3490dc;
   height: 5px;
+  overflow: hidden;
 }
 
 .routineProgramme .progressBar .progress {
@@ -11196,5 +11259,26 @@ ul.itemList li a:hover {
 
 .routineProgramme .navigation .next {
   text-align: right;
+}
+
+/*scrollbars*/
+
+.scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #9561e2 #4dc0b5;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: #4dc0b5;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #9561e2;
+  border-radius: 20px;
+  border: 3px solid #4dc0b5;
 }
 

@@ -30,9 +30,23 @@ ul.itemList{float:left; width:100%; margin:0 0 15px 0; padding:0; list-style-typ
     }
 }
 
+//routine side list
+ul.sideRoutineList{float:left; width:320px; height:500px; overflow-y:auto; margin:0; padding:0; list-style-type:none; border:1px solid $teal;
+    li{float:left; width:100%; margin:0; padding:0;
+        ul.sideSectionList{float:left; width:100%; margin:0; padding:0; border:1px solid $blue; background:$blue; list-style-type:none;
+            li{float:left; width:100%; margin:0; padding:0; color:$white; padding:10px;
+                .name{float:left; width:100%; text-transform:uppercase; font-weight:400; font-size:15px;}
+                ul.sideExerciseList{float:left; width:100%; margin:0; padding:0; list-style-type:none;
+                    li{float:left; width:100%; padding:0; margin:0 0 1px 0; background:$purple; color:$white;}
+                }
+            }
+        }
+    }
+}
+
 //routine programme
 .routineProgramme{float:left; width:100%; padding:30px; position:relative;
-    .progressBar{float:left; width:100%; background:$blue; height:5px;
+    .progressBar{float:left; width:100%; background:$blue; height:5px; overflow:hidden;
         .progress{float:left; width:100%; background:$yellow; height:5px;}
     }
     ul.sectionList{float:left; width:100%; padding:0; margin:0; list-style-type:none;
@@ -59,6 +73,11 @@ ul.itemList{float:left; width:100%; margin:0 0 15px 0; padding:0; list-style-typ
     }
 }
 
+/*scrollbars*/
+.scrollbar{scrollbar-width:thin; scrollbar-color:$purple $teal;}
+.scrollbar::-webkit-scrollbar{width:12px;}
+.scrollbar::-webkit-scrollbar-track{background:$teal;}
+.scrollbar::-webkit-scrollbar-thumb{background-color:$purple; border-radius:20px; border:3px solid $teal;}
 
 
 @media only screen and (min-width: 768px) {

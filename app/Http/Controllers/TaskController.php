@@ -23,14 +23,25 @@ class TaskController extends Controller
         foreach($rmtasks as $rmtask){
             $rmtask->delete();
         }*/
-        \DB::table('tasks')->where('user_id', auth()->user()->id)->where('dateTime', '<', Carbon::now())->delete();
+        //add timezone at registration, on load read timezone to preselect, add user edit options with delete for gdpr
+        
+        
+        //dont delete, let cron do it
+        //\DB::table('tasks')->where('user_id', auth()->user()->id)->where('dateTime', '<', Carbon::now('UTC'))->delete();
 
         //list all tasks
         $tasks = Task::all()
             ->where('user_id', '=', auth()->user()->id)
-            ->where('dateTime', '>=', Carbon::now());
+            ->where('completed', '=', 0)
+            ->where('dateTime', '>=', Carbon::now('UTC'));
 
-        return view('tasks/index', compact('tasks'));
+        $overdueTasks = Task::all()
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('completed', '=', 0)
+            ->where('dateTime', '<', Carbon::now('UTC'));    
+
+
+        return view('tasks/index', compact('tasks', 'overdueTasks'));
 
     }
 
@@ -97,9 +108,14 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    //public function update(Request $request, Task $task)
+    public function update($id)
     {
-        //
+        $user = auth()->user();
+
+        $user->tasks()->whereId($id)->update(['completed' => 1]);
+
+        return redirect('/tasks');
     }
 
     /**

@@ -54,7 +54,7 @@ Route::get('/trackers/all/{id}', 'TrackerResultController@all');
 Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/create', 'TaskController@create');
 Route::post('/tasks/store', 'TaskController@store');
-Route::get('/tasks/{id}/complete', 'TaskController@destroy');
+Route::get('/tasks/{id}/complete', 'TaskController@update');
 
 //Stopwatch
 Route::get('/stopwatch', function(){

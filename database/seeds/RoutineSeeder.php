@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TaskSeeder extends Seeder
+class RoutineSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,7 @@ class TaskSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Task::class,40)->create();
+        //
+        factory(App\Routine::class,3)->create();
     }
 }

@@ -35,7 +35,7 @@
             var timerId = setInterval(function() {
                 if(running != 0){
                     seconds++;
-                    var formatted = moment.duration(seconds, "seconds").format("h:mm:ss", {
+                    var formatted = moment.duration(seconds, "seconds").format("HH:mm:ss", {
                         stopTrim: "h"
                     });
                     $('#stopwatch .timer').text(formatted);
