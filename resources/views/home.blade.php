@@ -29,5 +29,47 @@
             </div>
         </div>
     </div>
+    <h2>Routines</h2>
+    <div class="row">
+        @foreach ($routines as $item)
+            <div class="col-md-4">
+                <div class="title">{{ $item['name'] }}</div>
+                <a href="routines/{{$item->id}}">Go</a>
+            </div>
+        @endforeach
+    </div>
+
+    <h2>Trackers:</h2>
+    <div class="row">
+        @php
+            $trackersCount;   
+        @endphp
+        @foreach ($trackers as $item)
+            <div class="col-md-4">
+                <div class="title">{{ $item['name'] }}</div>
+                <a href="/trackers/{{$item->id}}/result">Go</a>
+            </div>
+            @php
+                $trackersCount = $loop->count
+            @endphp
+        @endforeach
+        @if (number_format( ($trackersCount / 3) - floor($trackersCount / 3), 2 ) == 0.33)
+            <div class="col-md-8">
+                8 - {{$trackersCount}}
+            </div>
+        @endif
+        @if (number_format( ($trackersCount / 3) - floor($trackersCount / 3), 2 ) == 0.67)
+            <div class="col-md-4">
+                4 - {{$trackersCount}}
+            </div>
+        @endif
+        @if (number_format( ($trackersCount / 3) - floor($trackersCount / 3), 2 ) == 0.00)
+            <div class="col-md-12">
+                12 - {{$trackersCount}}
+            </div>
+        @endif
+
+    </div>
+
 </div>
 @endsection

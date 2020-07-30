@@ -10884,6 +10884,13 @@ a.text-dark:focus {
   }
 }
 
+body {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 a {
   color: #9561e2;
 }
@@ -10955,6 +10962,100 @@ ul.navbar li.dropdown a {
   padding: 0px;
   width: auto;
   margin: 0 15px 0 0;
+}
+
+.home-sidebar {
+  float: left;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 10px;
+  color: #3490dc;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.home-sidebar a {
+  float: left;
+  width: 50%;
+  background: #3490dc;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.home-sidebar a:hover {
+  background: #4a9ce0;
+}
+
+.welcome-section-1,
+.welcome-section-2,
+.welcome-section-3 {
+  float: left;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.welcome-section-1 .center-text,
+.welcome-section-2 .center-text,
+.welcome-section-3 .center-text {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.welcome-section-1 .center-text h1,
+.welcome-section-2 .center-text h1,
+.welcome-section-3 .center-text h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 5px rgba(52, 144, 220, 0.3);
+}
+
+.welcome-section-1 {
+  background: url(/images/routine-1.jpg?0a4dcd21d20fe788adc149b7adc6cfb2);
+  background-size: cover;
+}
+
+.welcome-section-2 {
+  background: url(/images/routine-2.jpg?ec1269ac55f5f4a5773817196c1956aa);
+  background-size: cover;
+}
+
+.welcome-section-3 {
+  background: url(/images/routine-3.jpg?b13200394f3a02183b03a781f2c38791);
+  background-size: cover;
+}
+
+@media only screen and (min-width: 1280px) {
+  .home-sidebar {
+    width: 300px;
+    height: 100vh;
+    background: #3490dc;
+    box-shadow: 1px 1px 30px 10px rgba(52, 144, 220, 0.3);
+  }
+
+  .welcome-section-1,
+  .welcome-section-2,
+  .welcome-section-3 {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+  }
 }
 
 /*panel*/

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Routine;
+use App\Tracker;
+
 class HomeController extends Controller
 {
     /**
@@ -23,7 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $routines = Routine::all()->where('user_id', auth()->user()->id);
+        $trackers = Tracker::all()->where('user_id', auth()->user()->id);
+
+        return view('home', compact('routines', 'trackers'));
     }
 }
 

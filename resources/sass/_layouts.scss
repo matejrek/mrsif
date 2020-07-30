@@ -1,3 +1,5 @@
+body{float:left; width:100%; margin:0; padding:0;}
+
 a{color:$purple;
     &:hover{text-decoration:none; color:darken($purple,7%);}
 }
@@ -19,11 +21,28 @@ ul.navbar{float:left; width:100%; margin:0; padding:0; list-style-type:none;
     }
 }
 
+//HOMEPAGE
+.home-sidebar{float:left; width:100%; height:auto; margin:0; padding:10px; color:$blue; position:fixed; left:0; bottom:0; right:0; z-index:999;
+    a{float:left; width:50%; background:$blue; color:$white; padding:10px; font-size:16px; font-weight:400; text-align:center; box-sizing:border-box;
+        text-transform:uppercase; border:1px solid transparent;
+        &:hover{background:lighten($blue,5%);}
+    }
+}
+.welcome-section-1, .welcome-section-2, .welcome-section-3{float:left; width:100%; min-height:100vh; margin:0; padding:0; position:relative;
+    .center-text{width:100%; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:$white; text-align:center;
+        h1{font-size:3rem; font-weight:600; text-shadow:1px 1px 5px rgba($blue,0.3);}
+    }
+}
+.welcome-section-1{background:url('../img/routine-1.jpg'); background-size:cover;}
+.welcome-section-2{background:url('../img/routine-2.jpg'); background-size:cover;}
+.welcome-section-3{background:url('../img/routine-3.jpg'); background-size:cover;}
+
 
 @media only screen and (min-width: 768px) {
 
 }
 
 @media only screen and (min-width: 1280px) {
-
+    .home-sidebar{width:300px; height:100vh; background:$blue; box-shadow:1px 1px 30px 10px rgba($blue,0.3);}
+    .welcome-section-1, .welcome-section-2, .welcome-section-3{width:calc(100% - 300px); margin-left:300px;}
 }
