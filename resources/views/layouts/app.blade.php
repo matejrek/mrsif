@@ -157,6 +157,12 @@
                         <a class="navLink" href="/stopwatch">Stopwatch</a>
                     </li>
                     <li class="navItem">
+                        <a class="navLink" href="/food">Food</a>
+                    </li>
+                    <li class="navItem">
+                        <a class="navLink" href="/planner">Planner</a>
+                    </li>
+                    <li class="navItem">
                         <a class="navLink" href="/feedback">Give feeback</a>
                     </li>
                 @endguest

@@ -39,10 +39,11 @@
         @endforeach
     </div>
 
+
     <h2>Trackers:</h2>
     <div class="row">
         @php
-            $trackersCount;   
+            $trackersCount = 0;   
         @endphp
         @foreach ($trackers as $item)
             <div class="col-md-4">
@@ -50,7 +51,7 @@
                 <a href="/trackers/{{$item->id}}/result">Go</a>
             </div>
             @php
-                $trackersCount = $loop->count
+                $trackersCount = $loop->count;
             @endphp
         @endforeach
         @if (number_format( ($trackersCount / 3) - floor($trackersCount / 3), 2 ) == 0.33)

@@ -56,6 +56,20 @@ Route::get('/tasks/create', 'TaskController@create');
 Route::post('/tasks/store', 'TaskController@store');
 Route::get('/tasks/{id}/complete', 'TaskController@update');
 
+//Foods
+Route::get('/food', 'FoodController@index');
+Route::get('/food/create', 'FoodController@create');
+Route::post('/food/store', 'FoodController@store');
+Route::get('/food/{id}', 'FoodController@show');
+Route::get('/food/delete/{id}', 'FoodController@destroy');
+
+Route::get('/food/{id}/edit', 'FoodController@edit');
+Route::put('/food/{id}/edit/save', 'FoodController@update');
+/*
+Route::delete('/trackers/results/{id}/delete', 'TrackerResultController@destroy');
+*/
+
+
 //Stopwatch
 Route::get('/stopwatch', function(){
     return view('stopwatch/index');
